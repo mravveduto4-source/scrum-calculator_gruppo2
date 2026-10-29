@@ -6,20 +6,20 @@ public class Calculator {
         double lastResult = 0.0;
         boolean keepRunning = true;
 
-        System.out.println("=== Calcolatrice CLI - SPRINT 1 ===");
-        System.out.println("Digita 'esci' per uscire, 'ans' per usare l'ultimo risultato.");
+        System.out.println("=== CLI Calculator - SPRINT 1 ===");
+        System.out.println("Type 'exit' to quit, 'ans' to use the last result.");
 
         while (keepRunning) {
-            System.out.print("\nInserisci primo operando (numero, 'ans' o 'esci'): ");
+            System.out.print("\nEnter first operand (number, 'ans' or 'exit'): ");
             String input1 = scanner.next();
 
-            // Controllo per uscire dal programma
-            if (input1.equalsIgnoreCase("esci")) {
+            // Check to exit the program
+            if (input1.equalsIgnoreCase("exit") || input1.equalsIgnoreCase("quit")) {
                 keepRunning = false;
                 break;
             }
 
-            // Gestione del primo operando
+            // First operand handling
             double op1 = 0.0;
             if (input1.equalsIgnoreCase("ans")) {
                 op1 = lastResult;
@@ -27,18 +27,18 @@ public class Calculator {
                 try {
                     op1 = Double.parseDouble(input1);
                 } catch (NumberFormatException e) {
-                    System.out.println("Errore: Inserisci un numero valido.");
-                    continue; // Ricomincia il ciclo
+                    System.out.println("Error: Please enter a valid number.");
+                    continue; // Restart the loop
                 }
             }
 
-            System.out.print("Inserisci operatore (+, -, *, /): ");
+            System.out.print("Enter operator (+, -, *, /): ");
             String operator = scanner.next();
 
-            System.out.print("Inserisci secondo operando (numero o 'ans'): ");
+            System.out.print("Enter second operand (number or 'ans'): ");
             String input2 = scanner.next();
             
-            // Gestione del secondo operando
+            // Second operand handling
             double op2 = 0.0;
             if (input2.equalsIgnoreCase("ans")) {
                 op2 = lastResult;
@@ -46,12 +46,12 @@ public class Calculator {
                 try {
                     op2 = Double.parseDouble(input2);
                 } catch (NumberFormatException e) {
-                    System.out.println("Errore: Inserisci un numero valido.");
-                    continue; // Ricomincia il ciclo
+                    System.out.println("Error: Please enter a valid number.");
+                    continue; // Restart the loop
                 }
             }
 
-            // Calcolo del risultato
+            // Calculate result
             double result = 0.0;
             boolean validOperation = true;
 
@@ -67,25 +67,25 @@ public class Calculator {
                     break;
                 case "/":
                     if (op2 == 0) {
-                        System.out.println("Errore: Divisione per zero non consentita.");
+                        System.out.println("Error: Division by zero is not allowed.");
                         validOperation = false;
                     } else {
                         result = op1 / op2;
                     }
                     break;
                 default:
-                    System.out.println("Errore: Operatore non valido.");
+                    System.out.println("Error: Invalid operator.");
                     validOperation = false;
             }
 
-            // Se l'operazione è andata a buon fine, stampa e salva il risultato
+            // If the operation was successful, print and save the result
             if (validOperation) {
-                System.out.println("Risultato: " + result);
+                System.out.println("Result: " + result);
                 lastResult = result;
             }
         }
         
         scanner.close();
-        System.out.println("Calcolatrice terminata.");
+        System.out.println("Calculator terminated.");
     }
 }
